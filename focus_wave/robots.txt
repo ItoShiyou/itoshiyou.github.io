@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://itoshiyou.github.io/focus_wave/sitemap.xml
