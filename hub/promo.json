@@ -1,10 +1,54 @@
 {
-  "version": 1,
+  "version": 2,
   "enabled": true,
+  "brand": "THE Bonjin",
   "line_url": "https://line.me/R/ti/p/@400kkcxl",
   "line_url_by_app": {},
-  "line_copy": "新作やお知らせを LINE でおとどけします",
+  "line_copy": "THE Bonjin の新作・お知らせを LINE でおとどけします",
+  "all_apps_url": "https://bonjin.gitpullpull.me/apps.html",
   "apps": [
+    {
+      "id": "handangaku",
+      "name": "ハンダン",
+      "copy": "日常の「どう判断する？」を学べる無料アプリ",
+      "url": "https://apps.apple.com/jp/app/id6831944228",
+      "icon": "https://itoshiyou.github.io/hub/icons/handangaku.png"
+    },
+    {
+      "id": "tsumiage_demae",
+      "name": "つみあげ出前",
+      "copy": "料理を頭に積んで届ける、ねこの出前パズル",
+      "url": "https://apps.apple.com/jp/app/id6829997215",
+      "icon": "https://itoshiyou.github.io/hub/icons/tsumiage_demae.png"
+    },
+    {
+      "id": "omoide_hyakkaten",
+      "name": "おもいで百貨店",
+      "copy": "デパート屋上の小さな遊園地をよみがえらせる",
+      "url": "https://apps.apple.com/jp/app/id6829372905",
+      "icon": "https://itoshiyou.github.io/hub/icons/omoide_hyakkaten.png"
+    },
+    {
+      "id": "stained_light",
+      "name": "光の窓割り",
+      "copy": "解けた瞬間、窓いっぱいに光があふれる論理パズル",
+      "url": "https://apps.apple.com/jp/app/id6824348602",
+      "icon": "https://itoshiyou.github.io/hub/icons/stained_light.png"
+    },
+    {
+      "id": "focus_wave",
+      "name": "Focus Wave",
+      "copy": "雨音・焚き火・カフェの音で集中",
+      "url": "https://apps.apple.com/jp/app/id6824796019",
+      "icon": "https://itoshiyou.github.io/hub/icons/focus_wave.png"
+    },
+    {
+      "id": "candle_walk",
+      "name": "ロウソク行脚",
+      "copy": "夜の洋館に灯りをともす、一筆書きパズル",
+      "url": "https://apps.apple.com/jp/app/id6822286730",
+      "icon": "https://itoshiyou.github.io/hub/icons/candle_walk.png"
+    },
     {
       "id": "english_lesson",
       "name": "Mimi English",

@@ -31,16 +31,19 @@
 
   var FALLBACK = {
     enabled: true,
+    brand: 'THE Bonjin',
     line_url: 'https://line.me/R/ti/p/@400kkcxl',
-    line_copy: '新作やお知らせを LINE でおとどけします',
+    line_copy: 'THE Bonjin の新作・お知らせを LINE でおとどけします',
+    all_apps_url: 'https://bonjin.gitpullpull.me/apps.html',
     apps: [
-      {
-        id: 'english_lesson',
-        name: 'Mimi English',
-        copy: 'AI英会話・医学英語をオフラインで',
-        url: 'https://englishlesson-eight.vercel.app/',
-        icon: 'https://itoshiyou.github.io/hub/icons/english_lesson.png',
-      },
+      { id: 'handangaku', name: 'ハンダン', copy: '日常の「どう判断する？」を学べる無料アプリ',
+        url: 'https://apps.apple.com/jp/app/id6831944228', icon: 'https://itoshiyou.github.io/hub/icons/handangaku.png' },
+      { id: 'tsumiage_demae', name: 'つみあげ出前', copy: '料理を頭に積んで届ける、ねこの出前パズル',
+        url: 'https://apps.apple.com/jp/app/id6829997215', icon: 'https://itoshiyou.github.io/hub/icons/tsumiage_demae.png' },
+      { id: 'omoide_hyakkaten', name: 'おもいで百貨店', copy: 'デパート屋上の小さな遊園地をよみがえらせる',
+        url: 'https://apps.apple.com/jp/app/id6829372905', icon: 'https://itoshiyou.github.io/hub/icons/omoide_hyakkaten.png' },
+      { id: 'stained_light', name: '光の窓割り', copy: '解けた瞬間、窓いっぱいに光があふれる論理パズル',
+        url: 'https://apps.apple.com/jp/app/id6824348602', icon: 'https://itoshiyou.github.io/hub/icons/stained_light.png' },
     ],
     launch_notice: { every: 3, skip_first: 1, seconds: 6 },
   };
@@ -63,6 +66,11 @@
   }
 
   var config = parse(store(CACHE_KEY) || '') || FALLBACK;
+  // Visit count: decides the notice and which other app is recommended
+  // this time, so every app takes turns promoting every other app.
+  var visits = (parseInt(store(COUNT_KEY) || '0', 10) || 0) + 1;
+  store(COUNT_KEY, String(visits));
+  function brand(c) { return c.brand || 'THE Bonjin'; }
 
   function lineUrl(c) {
     var by = c.line_url_by_app || {};
@@ -71,11 +79,12 @@
 
   function latest(c) {
     var apps = Array.isArray(c.apps) ? c.apps : [];
+    var others = [];
     for (var i = 0; i < apps.length; i++) {
       var a = apps[i];
-      if (a && a.id !== APP && a.url && a.name) return a;
+      if (a && a.id !== APP && a.url && a.name) others.push(a);
     }
-    return null;
+    return others.length ? others[visits % others.length] : null;
   }
 
   function tracked(url) {
@@ -156,10 +165,12 @@
       n.setAttribute('data-ito-promo-done', '');
       n.textContent = '';
       if (c.enabled === false || !japanese() || (!line && !app)) continue;
-      if (line) n.appendChild(row(lineBadge(32), '公式LINE', c.line_copy || '', function () { open(tracked(lineUrl(config))); }));
-      if (app) n.appendChild(row(icon(app, 32), '最新アプリ「' + app.name + '」', app.copy || '', function () {
+      if (line) n.appendChild(row(lineBadge(32), brand(c) + ' 公式LINE', c.line_copy || '', function () { open(tracked(lineUrl(config))); }));
+      if (app) n.appendChild(row(icon(app, 32), 'おすすめ「' + app.name + '」', app.copy || '', function () {
         var a = latest(config); if (a) open(tracked(a.url));
       }));
+      if (c.all_apps_url) n.appendChild(row(el('span', 'flex:none;width:32px;text-align:center;font-size:20px;opacity:.7', '▦'),
+        brand(c) + ' のアプリ一覧', '', function () { open(tracked(config.all_apps_url)); }));
     }
   }
 
@@ -185,11 +196,9 @@
     var n = c.launch_notice || {};
     var every = typeof n.every === 'number' ? n.every : 3;
     var skip = typeof n.skip_first === 'number' ? n.skip_first : 1;
-    var count = (parseInt(store(COUNT_KEY) || '0', 10) || 0) + 1;
-    store(COUNT_KEY, String(count));
     return {
-      due: c.enabled !== false && every > 0 && count > skip && count % every === 0,
-      index: every > 0 ? Math.floor(count / every) : 0,
+      due: c.enabled !== false && every > 0 && visits > skip && visits % every === 0,
+      index: every > 0 ? Math.floor(visits / every) : 0,
     };
   }
 
@@ -217,7 +226,7 @@
     }
     card.appendChild(isLine ? lineBadge(34) : icon(app, 36));
     var t = el('div', 'flex:1;min-width:0');
-    t.appendChild(el('div', 'font-weight:600;font-size:14px', isLine ? '公式LINEはじめました' : '新作「' + app.name + '」'));
+    t.appendChild(el('div', 'font-weight:600;font-size:14px', isLine ? brand(c) + ' 公式LINE' : 'おすすめ「' + app.name + '」'));
     t.appendChild(
       el('div', 'font-size:11px;opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis',
         isLine ? c.line_copy || '' : app.copy || '')
