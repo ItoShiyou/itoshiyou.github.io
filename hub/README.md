@@ -28,14 +28,34 @@
 4. **出さない場面**: プレイ中、撮影モード中
 5. **自分自身は推さない**（`apps` から自分の id を除外）
 6. **報酬を付けない**: 「友だち追加でアイテム」などは App Store 審査で問題になりやすいので禁止
-7. 見た目は各アプリの画面デザインに合わせる（審査ガイドライン 4.3 対策。部品を共通化しない）
+7. 見た目は各アプリの画面デザインに合わせる（審査ガイドライン 4.3 対策。仕組みは共通部品でよいが、色・書体・置き方はアプリごとのテーマや既存の部品に揃える）
+
+## 共通部品
+
+| 種類 | ファイル | 入れ方 |
+|---|---|---|
+| Flutter | `flutter/promo.dart` `flutter/promo_widgets.dart` | `hub/flutter/install.sh <アプリのフォルダ> <id>` で `lib/promo/` にコピー（依存とテストも追加）。`main` で `Promo.init('<id>')`、`MaterialApp(builder: (_, c) => LaunchNotice(child: c!))`、設定に `PromoPanel()`、リザルトに `PromoStrip()`。起動時に広告の同意/ATT を出すアプリは `Promo.init('<id>', waitForReady: true)` にして、同意のあと `Promo.markReady()` |
+| Web | `promo.js` | `<script src="https://itoshiyou.github.io/hub/promo.js" data-app="<id>" defer></script>`。設定などに `<div data-ito-promo></div>` を置くとリンクが入る |
+| ストアに出す Web アプリ（Capacitor など） | `promo.js` のコピー | 外部のコードを読み込まないよう、アプリに同梱して同じタグを付ける。起動時に同意ダイアログがあるなら `data-wait="ready"` を付け、同意のあと `ItoPromo.ready()` |
+
+Flutter 部品は、アプリのテーマの色と書体をそのまま使う。日本語以外の表示があるアプリでは、日本語のときだけ出す。
 
 ## 導入済み
 
-| アプリ | id | 実装 |
-|---|---|---|
-| ほどけライン | `untangle` | puzzle-apps/untangle `lib/services/promo.dart` |
-| ぴったりタワー | `stack_tower` | puzzle-apps/stack_tower `lib/services/promo.dart` |
-| ひとつだけちがう | `odd_one` | puzzle-apps/odd_one `lib/services/promo.dart` |
+| アプリ | id | 場所 | 置いたところ |
+|---|---|---|---|
+| ほどけライン | `untangle` | puzzle-apps/untangle | 設定・リザルト・起動時 |
+| ぴったりタワー | `stack_tower` | puzzle-apps/stack_tower | 設定・リザルト・起動時 |
+| ひとつだけちがう | `odd_one` | puzzle-apps/odd_one | 設定・リザルト・起動時 |
+| ひびあかり | `hibiakari` | chill_game/hibiakari | 設定・完成画面・起動時 |
+| ハンダン | `handangaku` | handangaku | 設定・起動時（同意のあと） |
+| ふたりの糸 | `futari_no_ito` | futari-no-ito | あそびかた・クリア画面・起動時 |
+| 思い出百貨店 | `omoide_hyakkaten` | omoide_hyakkaten | 設定・起動時（同意のあと・日本語のみ） |
+| 雪だるま帰り道 | `snowman_way_home` | snowman-way-home | 設定・起動時（同意のあと・日本語のみ） |
+| 宮大アプリ | `miyadai_app` | 宮大アプリver2 | 設定・起動時 |
+| Mimi English | `english_lesson` | english_lesson | 設定・起動時（同意のあと。自分自身は推さないので LINE のみ） |
+| ドパガキ | `dopagaki` | ドパガキシリーズ | 起動時（Web） |
+| ひとひねりゲーム集 | `hitohineri_games` | hitohineri_games | 一覧ページ・起動時（Web） |
+| komorebi | `komorebi` | yo-kai/komorebi.html | 起動時（Web） |
 
-App Store で公開されたら、`apps` にそのアプリを App Store の URL で追加すると、ほかのアプリから誘導されるようになります。
+App Store で公開されたら、`apps` にそのアプリを App Store の URL で追加すると、ほかのアプリから誘導されるようになる。
