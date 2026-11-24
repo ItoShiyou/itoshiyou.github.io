@@ -57,5 +57,19 @@ Flutter 部品は、アプリのテーマの色と書体をそのまま使う。
 | ドパガキ | `dopagaki` | ドパガキシリーズ | 起動時（Web） |
 | ひとひねりゲーム集 | `hitohineri_games` | hitohineri_games | 一覧ページ・起動時（Web） |
 | komorebi | `komorebi` | yo-kai/komorebi.html | 起動時（Web） |
+| つみあげ出前 | `tsumiage_demae` | mobile-local-games/apps/tsumiage_demae | 設定・起動時（日本語のみ） |
+| ふすま渡り | `fusuma_watari` | mobile-local-games/apps/fusuma_watari | 設定・起動時（日本語のみ） |
+| だし回し | `dashi_mawashi` | mobile-local-games/apps/dashi_mawashi | 設定・起動時（日本語のみ） |
+| 灯台守の日誌 | `lighthouse_log` | lighthouse_log | タイトル画面・起動時 |
+| けもの道 | `kemonomichi` | kemonomichi | 起動時 |
+| moonlit bells | `moonlit_bells` | Codex/2026-11-09/moonlit-bells | 起動時 |
+| snowball path | `snowball_path` | Codex/2026-11-09/snowball-path | 起動時 |
+| インビジブルワールド | `invisibleworld` | invisibleworld | 起動時（Web） |
+| The Taling | `the_taling` | the_talingver2 | 起動時（Web） |
+
+### 入れていないもの
+- **作業中の変更が多く、入れると衝突するもの**（その作業がコミットされてから入れる）: stained-light、encounter-diary、focus_wave
+- **個人の公式LINEを入れないもの**: THE Bonjin 名義（bonjin-escape、非公式宮大アプリ）、地域サービス（HINATA LOOP）
+- **古い版**: the_taling の Flutter 版（後継の the_talingver2 に入れた）
 
 App Store で公開されたら、`apps` にそのアプリを App Store の URL で追加すると、ほかのアプリから誘導されるようになる。
