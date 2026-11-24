@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "enabled": true,
+  "line_url": "https://line.me/R/ti/p/@400kkcxl",
+  "line_url_by_app": {},
+  "line_copy": "新作やお知らせを LINE でおとどけします",
+  "apps": [
+    {
+      "id": "english_lesson",
+      "name": "Mimi English",
+      "copy": "AI英会話・医学英語をオフラインで",
+      "url": "https://englishlesson-eight.vercel.app/",
+      "icon": "https://itoshiyou.github.io/hub/icons/english_lesson.png"
+    }
+  ],
+  "launch_notice": { "every": 3, "skip_first": 1, "seconds": 6 }
+}
