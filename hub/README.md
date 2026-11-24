@@ -1,4 +1,4 @@
-# hub — 公式LINE・最新アプリへの誘導（相互送客）
+# hub — THE Bonjin 公式LINE・アプリ相互送客
 
 各アプリは `https://itoshiyou.github.io/hub/promo.json` を読み、表示内容を決めます。
 **LINE の URL や推しアプリを変えるときは、この JSON を直して push するだけ**です（アプリ更新・再審査は不要）。
@@ -29,6 +29,16 @@
 5. **自分自身は推さない**（`apps` から自分の id を除外）
 6. **報酬を付けない**: 「友だち追加でアイテム」などは App Store 審査で問題になりやすいので禁止
 7. 見た目は各アプリの画面デザインに合わせる（審査ガイドライン 4.3 対策。仕組みは共通部品でよいが、色・書体・置き方はアプリごとのテーマや既存の部品に揃える）
+
+## THE Bonjin 公式LINE（thebonjin.project / @629zrowt）
+- アカウント名「THE Bonjin」、プロフィール画像はロゴ（`icons/thebonjin_logo.png`）、ステータス「作る力を社会の力に。」
+- あいさつメッセージ: 自己紹介＋アプリ一覧リンク
+- 応答メッセージ: 一律応答（受け付けました＋キーワード案内）／キーワード「アプリ・ゲーム・アプリ一覧」「新作・新しいアプリ」「サイト・Webサイト・ホームページ」「依頼・相談・お問い合わせ」
+- リッチメニュー: アプリ一覧／新作をあそぶ／Webサイト（画像 `line/richmenu.jpg`、元 `line/menu.html`）
+- 新作を出したら: `promo.json` の `apps` 先頭に追加 → リッチメニューBと「新作」返信のURLも差し替える
+
+## 相互送客のしくみ
+`apps` に並ぶアプリを、各アプリが起動のたびに順番に1つおすすめする（自分は除く）。設定画面には「THE Bonjin 公式LINE」「おすすめ」「THE Bonjin のアプリ一覧（all_apps_url）」が並ぶ。
 
 ## 共通部品
 
@@ -66,10 +76,14 @@ Flutter 部品は、アプリのテーマの色と書体をそのまま使う。
 | snowball path | `snowball_path` | Codex/2026-11-09/snowball-path | 起動時 |
 | インビジブルワールド | `invisibleworld` | invisibleworld | 起動時（Web） |
 | The Taling | `the_taling` | the_talingver2 | 起動時（Web） |
+| THE Bonjin 脱出ゲーム | `bonjin_escape` | bonjin-escape | 設定・ゲーム選択・起動時（同梱） |
+| 非公式宮大アプリ | `unofficial_miyazaki_univ_app` | unofficial_miyazaki_univ_app | マイページ・起動時（Web） |
+| HINATA LOOP | `hinata_loop` | manus/app/0825/hinata-loop | 起動時（Web） |
+| THE Bonjin サイト | — | ~/Claude/bonjin/bonjin | フッター LINKS に公式LINE |
 
 ### 入れていないもの
 - **作業中の変更が多く、入れると衝突するもの**（その作業がコミットされてから入れる）: stained-light、encounter-diary、focus_wave
-- **個人の公式LINEを入れないもの**: THE Bonjin 名義（bonjin-escape、非公式宮大アプリ）、地域サービス（HINATA LOOP）
+- **公開版のソースが特定できないもの**: ロウソク行脚（candle-walk。おすすめされる側には入っている）
 - **古い版**: the_taling の Flutter 版（後継の the_talingver2 に入れた）
 
 App Store で公開されたら、`apps` にそのアプリを App Store の URL で追加すると、ほかのアプリから誘導されるようになる。
