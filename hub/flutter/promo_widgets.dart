@@ -104,9 +104,9 @@ class PromoStrip extends StatelessWidget {
       alignment: WrapAlignment.center,
       children: [
         if (line != null)
-          TextButton(
+          const TextButton(
             onPressed: Promo.openLine,
-            child: const Text(
+            child: Text(
               'LINEでお知らせを受け取る',
               style: TextStyle(fontSize: 12, color: _lineGreen),
             ),
