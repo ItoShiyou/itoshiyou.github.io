@@ -32,7 +32,7 @@
   var FALLBACK = {
     enabled: true,
     brand: 'THE Bonjin',
-    line_url: 'https://line.me/R/ti/p/@400kkcxl',
+    line_url: 'https://line.me/R/ti/p/@629zrowt',
     line_copy: 'THE Bonjin の新作・お知らせを LINE でおとどけします',
     all_apps_url: 'https://bonjin.gitpullpull.me/apps.html',
     apps: [

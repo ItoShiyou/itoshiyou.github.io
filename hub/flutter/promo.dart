@@ -203,7 +203,7 @@ class PromoConfig {
 
   /// Bundled default, used until promo.json has been fetched once.
   static const fallback = PromoConfig(
-    lineUrl: 'https://line.me/R/ti/p/@400kkcxl',
+    lineUrl: 'https://line.me/R/ti/p/@629zrowt',
     allAppsUrl: 'https://bonjin.gitpullpull.me/apps.html',
     apps: [
       PromoApp(
