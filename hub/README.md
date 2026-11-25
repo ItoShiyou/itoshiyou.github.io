@@ -36,6 +36,14 @@
 - 応答メッセージ: 一律応答（受け付けました＋キーワード案内）／キーワード「アプリ・ゲーム・アプリ一覧」「新作・新しいアプリ」「サイト・Webサイト・ホームページ」「依頼・相談・お問い合わせ」
 - リッチメニュー: アプリ一覧／新作をあそぶ／Webサイト（画像 `line/richmenu.jpg`、元 `line/menu.html`）
 - 新作を出したら: `promo.json` の `apps` 先頭に追加 → リッチメニューBと「新作」返信のURLも差し替える
+- ビジネスプロフィール: お知らせ「THE Bonjin 公式LINEをはじめました」、Webサイト（bonjin.gitpullpull.me）、Instagram（thebonjin_official）を掲載・公開済み
+- 友だち追加の入口: アプリ（promo.json）／THE Bonjin サイトのフッター（PR #2）／Instagram のリンク欄（lin.ee/vhoCKJj → @629zrowt）／QRコード `line/line_qr.png`（ストーリー・チラシ用）
+
+### 最新情報を配るとき（運用）
+1. LINE Official Account Manager →「メッセージを作成」で配信（新作公開・大型アップデート・イベントなど。月数回までが目安）
+2. 同じ内容をビジネスプロフィールの「お知らせ」にも追加（友だち以外も見られる）
+3. 新作なら上の「新作を出したら」の3点（promo.json・リッチメニューB・「新作」返信）を更新
+4. Instagram の投稿・ストーリーで告知し、QRコードかリンク欄から公式LINEへ
 
 ## 相互送客のしくみ
 `apps` に並ぶアプリを、各アプリが起動のたびに順番に1つおすすめする（自分は除く）。設定画面には「THE Bonjin 公式LINE」「おすすめ」「THE Bonjin のアプリ一覧（all_apps_url）」が並ぶ。
